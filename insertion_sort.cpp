@@ -26,7 +26,7 @@ void insertionsort(vector<int>& arr){
 
 int main() {
 	// your code goes here
-	vector<int> arr{5,4,1};
+    vector<int> arr{5,4,1};
 	printarr(arr);
 	insertionsort(arr);
 	printarr(arr);
