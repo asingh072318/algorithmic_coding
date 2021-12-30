@@ -9,18 +9,20 @@ public:
         vector<vector<bool>> visited(m,vector<bool>(n,false));
         queue<pair<int,int>> q;
         q.push(make_pair(sr,sc));
+        visited[sr][sc]=true;
         int x[] = {-1,0,1,0};
         int y[] = {0,-1,0,1};
         while(!q.empty()){
             pair<int,int> curr = q.front();
             q.pop();
-            visited[curr.first][curr.second]=true;
             image[curr.first][curr.second]=newColor;
             for(int i=0;i<4;i++){
                 int newx = curr.first+x[i];
                 int newy = curr.second+y[i];
-                if(isSafe(newx,newy,visited) && image[newx][newy]==oldColor)
+                if(isSafe(newx,newy,visited) && image[newx][newy]==oldColor){
                     q.push(make_pair(newx,newy));
+                    visited[newx][newy] = true;
+                }
             }
         }
         return image;
