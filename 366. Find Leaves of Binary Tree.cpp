@@ -41,3 +41,37 @@ public:
         return response;
     }
 };
+
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    
+    int getHeight(TreeNode* root, vector<vector<int>>& response){
+        if(root == NULL)
+            return -1;
+        int lheight = getHeight(root->left,response);
+        int rheight = getHeight(root->right,response);
+        int cheight = 1 + max(lheight,rheight);
+        if(response.size() == cheight)
+            response.push_back({});
+        response[cheight].push_back(root->val);
+        return cheight;
+    }
+    
+    vector<vector<int>> findLeaves(TreeNode* root) {
+        vector<vector<int>> response;
+        getHeight(root,response);
+        return response;
+    }
+};
